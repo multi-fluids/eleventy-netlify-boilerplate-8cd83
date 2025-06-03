@@ -1,38 +1,60 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "static/img"
+public_folder: "/img"
+media_library:
+  name: uploadcare
+
 collections:
   - name: "about"
     label: "About"
-    files:
-      - file: "pages/about/index.md"
-        label: "About Page"
-        name: "about"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Publish Date", name: "date", widget: "datetime" }
-          - { label: "Permalink", name: "permalink", widget: "string" }
-          - label: "Navigation"
-            name: "eleventyNavigation"
-            widget: "object"
-            fields:
-              - { label: "Key", name: "key", widget: "string" }
-              - { label: "Order", name: "order", widget: "number", default: 0 }
-          - { label: "Body", name: "body", widget: "markdown" }
+    folder: "pages/about"
+    create: true
+    slug: "index"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "people"
+    label: "People"
+    folder: "pages/people"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Bio", name: "body", widget: "markdown" }
 
   - name: "research"
     label: "Research"
-    files:
-      - file: "pages/research/index.md"
-        label: "Research Page"
-        name: "research"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Publish Date", name: "date", widget: "datetime" }
-          - { label: "Permalink", name: "permalink", widget: "string" }
-          - label: "Navigation"
-            name: "eleventyNavigation"
-            widget: "object"
-            fields:
-              - { label: "Key", name: "key", widget: "string" }
-              - { label: "Order", name: "order", widget: "number", default: 0 }
-          - { label: "Body", name: "body", widget: "markdown" }
+    folder: "pages/research"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
-  # Repeat similarly for "people", "publications", "software"
+  - name: "publications"
+    label: "Publications"
+    folder: "pages/publications"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Authors", name: "authors", widget: "list" }
+      - { label: "Journal", name: "journal", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "software"
+    label: "Software"
+    folder: "pages/software"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tool Name", name: "title", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Repository", name: "repo", widget: "string" }
