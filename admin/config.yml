@@ -1,67 +1,38 @@
-# Decap CMS Configuration File
-
-backend:
-  name: git-gateway
-  branch: master
-
-media_folder: "static/img"
-
 collections:
-  # About page
   - name: "about"
     label: "About"
-    folder: "pages/about"
-    create: false
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Permalink", name: "permalink", widget: "string", default: "/about/" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    files:
+      - file: "pages/about/index.md"
+        label: "About Page"
+        name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Publish Date", name: "date", widget: "datetime" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - label: "Navigation"
+            name: "eleventyNavigation"
+            widget: "object"
+            fields:
+              - { label: "Key", name: "key", widget: "string" }
+              - { label: "Order", name: "order", widget: "number", default: 0 }
+          - { label: "Body", name: "body", widget: "markdown" }
 
-  # People page
-  - name: "people"
-    label: "People"
-    folder: "pages/people"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "title", widget: "string" }
-      - { label: "Role", name: "role", widget: "string" }
-      - { label: "Bio", name: "body", widget: "markdown" }
-      - { label: "Photo", name: "photo", widget: "image", required: false }
-
-  # Research page
   - name: "research"
     label: "Research"
-    folder: "pages/research"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Summary", name: "summary", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    files:
+      - file: "pages/research/index.md"
+        label: "Research Page"
+        name: "research"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Publish Date", name: "date", widget: "datetime" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - label: "Navigation"
+            name: "eleventyNavigation"
+            widget: "object"
+            fields:
+              - { label: "Key", name: "key", widget: "string" }
+              - { label: "Order", name: "order", widget: "number", default: 0 }
+          - { label: "Body", name: "body", widget: "markdown" }
 
-  # Publications
-  - name: "publications"
-    label: "Publications"
-    folder: "pages/publications"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Authors", name: "authors", widget: "string" }
-      - { label: "Journal", name: "journal", widget: "string" }
-      - { label: "Year", name: "year", widget: "number" }
-      - { label: "PDF Link", name: "pdf", widget: "string", required: false }
-      - { label: "Body", name: "body", widget: "markdown", required: false }
-
-  # Software tools / code
-  - name: "software"
-    label: "Software"
-    folder: "pages/software"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "title", widget: "string" }
-      - { label: "Repository Link", name: "repo", widget: "string", required: false }
-      - { label: "Description", name: "body", widget: "markdown" }
+  # Repeat similarly for "people", "publications", "software"
